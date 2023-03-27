@@ -3,7 +3,7 @@ import os
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap  # type: ignore
 
 from config import Config
 
