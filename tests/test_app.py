@@ -1,8 +1,9 @@
 from typing import Generator
+
 import pytest
 from flask.testing import FlaskClient
 
-from ac_performance.app import app
+from ac_performance import app
 
 
 @pytest.fixture
@@ -12,7 +13,14 @@ def client() -> Generator[FlaskClient, None, None]:
         yield client
 
 
-def test_home_route(client: FlaskClient):
-    response = client.get("/")
+@pytest.mark.parametrize("route", ["index", "/"])
+def test_home_route(route, client: FlaskClient):
+    response = client.get(route)
     assert response.status_code == 200
-    assert b"Hello, World!" in response.data
+    assert b"Hello" in response.data
+
+
+def test_404(client: FlaskClient):
+    response = client.get("indx")
+    assert response.status_code == 404
+    assert b"Not Found" in response.data
