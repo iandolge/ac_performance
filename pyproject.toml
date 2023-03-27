@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Ian Dolge <110300455+iandolge@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{include = "ac_performance"}]
+packages = [{include = "app"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
